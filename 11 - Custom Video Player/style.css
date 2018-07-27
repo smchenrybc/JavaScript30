@@ -94,14 +94,15 @@ body {
   height:5px;
   transition:height 0.3s;
   background:rgba(0,0,0,0.5);
-  cursor:ew-resize;
+  /* cursor:ew-resize; */
+  cursor: pointer;
 }
 
 .progress__filled {
   width:50%;
   background:#ffc600;
   flex:0;
-  flex-basis:50%;
+  /* flex-basis:50%; */
 }
 
 /* unholy css to style input type="range" */
@@ -135,7 +136,7 @@ input[type=range]::-webkit-slider-thumb {
   box-shadow:0 0 2px rgba(0,0,0,0.2);
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #bada55;
+  background: rgba(255,255,255,0.95);
 }
 input[type=range]::-moz-range-track {
   width: 100%;
@@ -153,4 +154,12 @@ input[type=range]::-moz-range-thumb {
   border-radius: 50px;
   background: #ffc600;
   cursor: pointer;
+}
+
+/* NEW STYLES */
+.player__button:hover {
+  color: #ffc600;
+}
+.player__button.fullscreen {
+  max-width: 35px;
 }
