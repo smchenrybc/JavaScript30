@@ -99,6 +99,42 @@
   </div>
 
 <script>
+  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+  // console.log(checkboxes);
+
+  // using let because variable will
+  // be reassigned quite frequently:
+  let lastChecked;
+
+  function handleCheck(e) {
+    let inBetween = false;
+
+    // check if shift key is down and if they
+    // are checking the box, not unchecking it
+    if (e.shiftKey && this.checked) {
+      // loop over every checkbox
+      checkboxes.forEach(checkbox => {
+        // console.log(checkbox);
+
+        if (checkbox === this || checkbox === lastChecked) {
+          // inBetween = true;
+
+          // set 'inBetween' to the opposit of itself
+          inBetween = !inBetween;
+
+        }
+
+        if (inBetween) {
+          checkbox.checked = true;
+        }
+      });
+    }
+
+    lastChecked = this;
+  }
+
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
 </script>
+
 </body>
 </html>
