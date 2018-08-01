@@ -41,7 +41,7 @@ html {
   Strip!
 */
 
-.strip {
+/* .strip {
   padding:2rem;
 }
 .strip img {
@@ -57,3 +57,61 @@ html {
 .strip a:nth-child(5n+3) img { transform: rotate(8deg); }
 .strip a:nth-child(5n+4) img { transform: rotate(-11deg); }
 .strip a:nth-child(5n+5) img { transform: rotate(12deg); }
+ */
+/*
+NEW STYLES
+ */
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  font-size: 1rem;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
+}
+a {
+  color: hsla(210, 75%, 50%, 1.0);
+  text-decoration: none;
+}
+.photobooth {
+  padding: 1rem;
+}
+.controls button {
+  background-color: #EEE;
+  color: #444;
+  border-radius: 2px;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  line-height: normal;
+  -webkit-appearance: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+.controls .rgb {
+  margin: 1rem 0 1.5rem;
+}
+.photobooth .photo {
+  margin-bottom: 1.5rem;
+}
+
+.strip {
+  clear: both;
+  margin: 0 -7px;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  /* justify-content: space-around; */
+}
+.strip a {
+  width: 20%;
+}
+.strip img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 7px;
+}
