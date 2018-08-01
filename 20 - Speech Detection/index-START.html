@@ -12,7 +12,43 @@
 <script>
   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
+  const recognition = new SpeechRecognition();
+  // console.log(recognition);
 
+  recognition.interimResults = true;
+
+  // create a paragraph
+  let pg = document.createElement('p');
+  const words = document.querySelector('.words');
+  words.appendChild(pg);
+
+  recognition.addEventListener('results', e => {
+    // console.log(e.results);
+
+    const transcript = Array.from(e.results)
+      .map(result => result[0])
+      .map(result => result.transcript)
+      .join('');
+
+    pg.textContent = transcript;
+
+    if (e.results[0].isFinal) {
+      pg = document.createElement('p');
+      words.appendChild(pg);
+    }
+    if (transcript.includes('cats')) {
+      console.log('MEOW! 🐅🐆🐈');
+    }
+    if (transcript.includes('what\'s the weather')) {
+      console.log('You asked for the weather! ☁️')
+    }
+
+    console.log(transcript);
+  });
+
+  recognition.addEventListener('end', recognition.start);
+
+  recognition.start();
 </script>
 
 
