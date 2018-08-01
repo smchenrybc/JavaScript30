@@ -26,7 +26,42 @@
     </div>
 
   <script>
-    // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+    // 👀
+
+    const triggers = document.querySelectorAll('a');
+    const highlight = document.createElement('span');
+    highlight.classList.add('highlight');
+    document.body.append(highlight);
+
+    function highlightLink() {
+      console.log('Highlighting!...');
+
+      // get coordinates of current link
+      const linkCoords = this.getBoundingClientRect();
+
+      // Problem with above coordinate setup is
+      // that the pill's top position is offset
+      // by the amount the user has scrolled. Fix below.
+
+      const coords = {
+        width: linkCoords.width,
+        height: linkCoords.height,
+        top: linkCoords.top + window.scrollY,
+        left: linkCoords.left + window.scrollX
+      }
+
+      // change size of highlighting pill
+      highlight.style.width = `${coords.width}px`;
+      highlight.style.height = `${coords.height}px`;
+
+      // move the pill around
+      highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+    }
+
+    // highlight links on hover
+    triggers.forEach(a => a.addEventListener('mouseenter', highlightLink));
+
+
   </script>
 </body>
 </html>
