@@ -64,6 +64,7 @@
   // will cause event bubbling (clicking the innermost
   // div will cause a click event on both of its parents
   const divs = document.querySelectorAll('.main div');
+  const button = document.querySelector('.main button');
 
   function logText(e) {
     // this will cause the click event to only
@@ -81,6 +82,12 @@
     // this is same as using 'removeEventListener' above ⬆
     once: true
   }));
+
+  button.addEventListener('click', () => {
+    console.log('I only log one click!');
+  }, {
+    once: true
+  });
 </script>
 </body>
 </html>
