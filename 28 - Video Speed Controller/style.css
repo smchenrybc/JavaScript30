@@ -9,7 +9,7 @@ body {
   font-family: sans-serif;
 }
 .wrapper {
-  width:850px;
+  /* width:850px; */
   display:flex;
 }
 video {
@@ -36,4 +36,6 @@ video {
   padding:2px;
   color:white;
   height:16.3%;
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
