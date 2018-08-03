@@ -34,20 +34,83 @@
     </div>
   </div>
 
+  <div class="message">
+    <p>Games last 30 seconds.</p>
+  </div>
+
 <script>
   const holes = document.querySelectorAll('.hole');
   const scoreBoard = document.querySelector('.score');
   const moles = document.querySelectorAll('.mole');
+  const startButton = document.querySelector('.button button');
 
-  function randTime(min, max) {
-    return Math.random() * (max - min) + min;
+  let lastHole;
+  let timeUp = false;
+  let score = 0;
+
+  function randomTime(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
   }
 
   function randomHole(holes) {
-    // holes is a NodeList
-    console.log(holes.length);
+    const idx = Math.floor(Math.random() * holes.length);
+    const hole = holes[idx];
+
+    if (hole === lastHole) {
+      console.log('Same hole! Giving you another...');
+      return randomHole(holes);
+    }
+
+    // save reference to last hole returned
+    lastHole = hole;
+    return hole;
   }
 
+  function peep() {
+    const time = randomTime(400, 1200);
+    const hole = randomHole(holes);
+    // console.log({time, hole});
+
+    hole.classList.add('up');
+
+    setTimeout(() => {
+      hole.classList.remove('up');
+
+      if (!timeUp) {
+        peep();
+      }
+
+    }, time);
+  }
+
+  function startGame() {
+    score = 0;
+    scoreBoard.textContent = 0;
+    timeUp = false;
+    peep();
+
+    setTimeout(() => {
+      timeUp = true;
+    }, 30000);
+  }
+
+  function bonk(e) {
+    // prevent fake clicks
+    if (!e.isTrusted) {
+      console.log('You cheated!');
+      return;
+    }
+
+    // increase the score
+    score++;
+    scoreBoard.textContent = score;
+
+    // make him go back down
+    this.classList.remove('up');
+  }
+
+  startButton.addEventListener('click', startGame);
+  moles.forEach(mole => mole.addEventListener('click', bonk));
 </script>
 </body>
 </html>
